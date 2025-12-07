@@ -41,4 +41,25 @@ public class CustomerServiceTest {
         assertThrows(IllegalArgumentException.class,
                     () -> service.getCustomerRank(1000, -1, true));
     }
+
+      @Test
+    void testCalcPriceWithTax_normal() {
+        // 1000円・税率10% → 1100円になってほしい
+        int result = service.calcPriceWithTax(1000, 0.1);
+        assertEquals(1100, result);
+    }
+
+    @Test
+    void testCalcPriceWithTax_zero() {
+        // 0円ならもちろん0円
+        int result = service.calcPriceWithTax(0, 0.1);
+        assertEquals(0, result);
+    }
+
+    @Test
+    void testCalcPriceWithTax_negative() {
+        // マイナスなら例外が飛ぶべき
+        assertThrows(IllegalArgumentException.class,
+            () -> service.calcPriceWithTax(-1, 0.1));
+    }
 }

@@ -32,6 +32,6 @@ public class CustomerService {
             throw new IllegalArgumentException("金額はマイナスに出来ません");
         }
 
-        return (int)Math.round(priceWithoutTax+(1* taxRate));
+        return (int)Math.round(priceWithoutTax*(1 +taxRate));
     }
 }
