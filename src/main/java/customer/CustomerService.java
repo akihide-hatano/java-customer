@@ -26,4 +26,12 @@ public class CustomerService {
         // Cランク
         return "C";
     }
+
+    public int calcPriceWithTax(int priceWithoutTax,double taxRate){
+        if(priceWithoutTax <0 ){
+            throw new IllegalArgumentException("金額はマイナスに出来ません");
+        }
+
+        return (int)Math.round(priceWithoutTax+(1* taxRate));
+    }
 }
